@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; connect-src 'self' https://*.supabase.co wss://*.supabase.co; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:;" />
+  <title>Acceso seguro | Psicoeducandonos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body>
+  <main class="auth-layout">
+    <section class="auth-panel">
+      <a class="auth-brand" href="index.html">
+        <span class="auth-brand__mark">P</span>
+        <span><strong>Psicoeducandonos</strong><span>.org</span></span>
+      </a>
+
+      <div class="auth-card">
+        <h1>Acceso administrativo</h1>
+        <p>Ingresa con tu cuenta autorizada. El segundo factor sera obligatorio antes de abrir el panel.</p>
+
+        <div class="auth-status" data-auth-status hidden></div>
+
+        <form data-login-form>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="username" required />
+          </div>
+          <div class="field">
+            <label for="password">Contrasena</label>
+            <input id="password" name="password" type="password" autocomplete="current-password" required />
+          </div>
+          <button class="button" type="submit">Entrar</button>
+        </form>
+
+        <a class="small-link" href="index.html">Volver al sitio</a>
+      </div>
+    </section>
+
+    <aside class="auth-aside" aria-label="Controles de seguridad">
+      <div class="auth-aside__content">
+        <h2>Confianza cero para el blog.</h2>
+        <p>Cada entrada al panel se valida con sesion activa, rol permitido, segundo factor y vencimiento por inactividad.</p>
+        <ul class="trust-list">
+          <li>MFA/TOTP obligatorio</li>
+          <li>Sesion por pestana</li>
+          <li>Roles admin/editor</li>
+          <li>Bloqueo si falta configuracion</li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <script src="js/auth-config.js"></script>
+  <script type="module" src="js/login.js"></script>
+</body>
+</html>

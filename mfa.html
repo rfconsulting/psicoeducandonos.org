@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; connect-src 'self' https://*.supabase.co wss://*.supabase.co; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:;" />
+  <title>Doble factor | Psicoeducandonos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body>
+  <main class="auth-layout">
+    <section class="auth-panel">
+      <a class="auth-brand" href="index.html">
+        <span class="auth-brand__mark">P</span>
+        <span><strong>Psicoeducandonos</strong><span>.org</span></span>
+      </a>
+
+      <div class="auth-card">
+        <h1>Verificacion 2FA</h1>
+        <p>Confirma el codigo temporal de tu app autenticadora para elevar la sesion a AAL2.</p>
+
+        <div class="auth-status" data-auth-status hidden></div>
+
+        <section data-mfa-panel hidden>
+          <form data-mfa-verify>
+            <div class="field">
+              <label for="factor">Autenticador</label>
+              <select id="factor" data-factor-id required></select>
+            </div>
+            <div class="field">
+              <label for="code">Codigo de 6 digitos</label>
+              <input id="code" name="code" inputmode="numeric" pattern="[0-9]{6}" autocomplete="one-time-code" required />
+            </div>
+            <button class="button" type="submit">Verificar y entrar</button>
+          </form>
+        </section>
+
+        <section data-mfa-setup hidden>
+          <div class="mfa-qr" data-mfa-qr>
+            <button class="button button-secondary" type="button" data-start-enroll>Activar autenticador</button>
+          </div>
+          <form data-mfa-enroll>
+            <div class="field">
+              <label for="setup-code">Codigo de confirmacion</label>
+              <input id="setup-code" name="code" inputmode="numeric" pattern="[0-9]{6}" autocomplete="one-time-code" required />
+            </div>
+            <button class="button" type="submit">Confirmar MFA</button>
+          </form>
+        </section>
+
+        <a class="small-link" href="login.html">Usar otra cuenta</a>
+      </div>
+    </section>
+
+    <aside class="auth-aside" aria-label="Doble factor de autenticacion">
+      <div class="auth-aside__content">
+        <h2>Segundo factor activo.</h2>
+        <p>El panel administrativo no confia solo en la contrasena. Cada sesion debe demostrar un factor adicional antes de continuar.</p>
+        <ul class="trust-list">
+          <li>Codigos TOTP</li>
+          <li>Compatible con Authenticator</li>
+          <li>Revalidacion por sesion</li>
+          <li>Sin secretos en el frontend</li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <script src="js/auth-config.js"></script>
+  <script type="module" src="js/mfa.js"></script>
+</body>
+</html>
