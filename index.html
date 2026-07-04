@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Psicoeducandonos.org – Salud Emocional Integral</title>
+  <meta name="description" content="Psicoeducandonos.org – Educación en salud emocional integral integrando fe, emociones, voluntad y pensamientos. Cursos, consultas individuales, blog y recursos para profesionales." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-dark:   #0F3460;
+      --blue-mid:    #1B5FA8;
+      --blue-light:  #3A8DDE;
+      --blue-pale:   #E8F2FC;
+      --white:       #FFFFFF;
+      --gray-100:    #F4F7FB;
+      --gray-200:    #E2EAF4;
+      --gray-600:    #5A6A82;
+      --gray-800:    #2D3748;
+      --accent:      #D4A843;
+      --radius:      12px;
+      --shadow-sm:   0 2px 8px rgba(15,52,96,.08);
+      --shadow-md:   0 6px 24px rgba(15,52,96,.12);
+      --shadow-lg:   0 16px 48px rgba(15,52,96,.16);
+      --transition:  all .25s ease;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--gray-800);
+      background: var(--white);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ─── Utilities ─── */
+    .container  { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .section    { padding: 88px 0; }
+    .section-sm { padding: 56px 0; }
+    .text-center { text-align: center; }
+    .tag {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      background: var(--blue-pale);
+      color: var(--blue-mid);
+      margin-bottom: 12px;
+    }
+    .heading-xl {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      line-height: 1.2;
+      color: var(--blue-dark);
+    }
+    .heading-lg {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      line-height: 1.25;
+      color: var(--blue-dark);
+    }
+    .heading-md {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--blue-dark);
+    }
+    .lead {
+      font-size: 1.1rem;
+      color: var(--gray-600);
+      max-width: 640px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 30px;
+      border-radius: var(--radius);
+      font-size: .95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+    }
+    .btn-primary {
+      background: var(--blue-mid);
+      color: var(--white);
+      box-shadow: 0 4px 16px rgba(27,95,168,.35);
+    }
+    .btn-primary:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(15,52,96,.35); }
+    .btn-outline {
+      background: transparent;
+      color: var(--blue-mid);
+      border: 2px solid var(--blue-mid);
+    }
+    .btn-outline:hover { background: var(--blue-pale); transform: translateY(-2px); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,.6);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,.15); }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    @media (max-width: 900px) {
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+      .section { padding: 56px 0; }
+    }
+
+    /* ─── Navbar ─── */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      background: rgba(255,255,255,.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--gray-200);
+      transition: var(--transition);
+    }
+    .navbar.scrolled { box-shadow: var(--shadow-md); }
+    .navbar__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .navbar__logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-icon {
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, var(--blue-mid), var(--blue-dark));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.4rem;
+    }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-text strong {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--blue-dark);
+      letter-spacing: -.02em;
+    }
+    .logo-text span { font-size: .7rem; color: var(--gray-600); letter-spacing: .04em; }
+    .navbar__nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .navbar__nav a {
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--gray-600);
+      transition: var(--transition);
+    }
+    .navbar__nav a:hover, .navbar__nav a.active { color: var(--blue-mid); background: var(--blue-pale); }
+    .navbar__cta { display: flex; gap: 10px; }
+    .navbar__toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+    .navbar__toggle span {
+      display: block; width: 24px; height: 2px;
+      background: var(--blue-dark); border-radius: 2px;
+      transition: var(--transition);
+    }
+    .navbar__toggle span + span { margin-top: 5px; }
+    @media (max-width: 768px) {
+      .navbar__nav, .navbar__cta { display: none; }
+      .navbar__toggle { display: block; }
+      .navbar.open .navbar__nav {
+        display: flex; flex-direction: column; align-items: flex-start;
+        position: absolute; top: 72px; left: 0; right: 0;
+        background: white; padding: 16px 24px 24px;
+        border-top: 1px solid var(--gray-200);
+        box-shadow: var(--shadow-lg);
+        gap: 4px;
+      }
+      .navbar.open .navbar__nav a { width: 100%; }
+      .navbar.open .navbar__cta {
+        display: flex; flex-direction: column;
+        position: absolute; left: 0; right: 0;
+        top: calc(72px + var(--nav-height, 260px));
+        padding: 0 24px 24px; background: white;
+      }
+    }
+
+    /* ─── Hero ─── */
+    .hero {
+      padding-top: 72px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-mid) 55%, #2E86C1 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+      padding: 96px 0 80px;
+    }
+    .hero__content { position: relative; z-index: 1; }
+    .hero__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,.15);
+      color: rgba(255,255,255,.9);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255,255,255,.2);
+    }
+    .hero__title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      color: white;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero__title em { font-style: normal; color: var(--accent); }
+    .hero__desc {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,.82);
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 500px;
+    }
+    .hero__actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero__visual {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+    }
+    .hero__card-stack { position: relative; width: 340px; height: 420px; }
+    .hero__card {
+      position: absolute;
+      background: rgba(255,255,255,.12);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 20px;
+      padding: 24px;
+      color: white;
+    }
+    .hero__card--main {
+      top: 0; left: 0; right: 0;
+      padding: 32px;
+    }
+    .hero__card--main .card-icon {
+      width: 56px; height: 56px;
+      background: rgba(255,255,255,.2);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+    .hero__card--main h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .hero__card--main p { font-size: .88rem; color: rgba(255,255,255,.75); line-height: 1.6; }
+    .hero__card--float {
+      bottom: 20px; right: -20px;
+      width: 200px;
+      padding: 18px;
+    }
+    .hero__card--float .mini-stat { font-size: 1.8rem; font-weight: 800; }
+    .hero__card--float .mini-label { font-size: .8rem; color: rgba(255,255,255,.75); }
+    .hero__pillars {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .pillar-chip {
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.25);
+      color: rgba(255,255,255,.9);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: .8rem;
+      font-weight: 500;
+      display: flex; align-items: center; gap: 6px;
+    }
+    @media (max-width: 820px) {
+      .hero__inner { grid-template-columns: 1fr; padding: 80px 0 60px; text-align: center; }
+      .hero__desc, .hero__title { margin-left: auto; margin-right: auto; }
+      .hero__actions { justify-content: center; }
+      .hero__visual { display: none; }
+      .hero__pillars { justify-content: center; }
+    }
+
+    /* ─── Stats Bar ─── */
+    .stats-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 36px 0;
+    }
+    .stats-bar__inner {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .stat-item { text-align: center; }
+    .stat-item .number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--blue-mid);
+    }
+    .stat-item .label {
+      font-size: .82rem;
+      color: var(--gray-600);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+    .stat-divider { width: 1px; height: 48px; background: var(--gray-200); }
+    @media (max-width: 600px) { .stat-divider { display: none; } }
+
+    /* ─── About / Pillars ─── */
+    .about { background: var(--gray-100); }
+    .about__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .about__pillars {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 32px;
+    }
+    .pillar-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border-left: 4px solid var(--blue-light);
+    }
+    .pillar-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .pillar-card .icon { font-size: 2rem; margin-bottom: 10px; }
+    .pillar-card h4 { font-weight: 700; color: var(--blue-dark); margin-bottom: 6px; font-size: .95rem; }
+    .pillar-card p { font-size: .83rem; color: var(--gray-600); line-height: 1.6; }
+    .about__img-wrap {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--blue-pale), var(--blue-mid));
+      aspect-ratio: 4/5;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .about__img-placeholder {
+      text-align: center;
+      color: white;
+      padding: 32px;
+    }
+    .about__img-placeholder .big-icon { font-size: 5rem; margin-bottom: 16px; }
+    .about__img-placeholder p { font-size: 1.1rem; font-weight: 600; opacity: .9; }
+    @media (max-width: 820px) {
+      .about__inner { grid-template-columns: 1fr; gap: 40px; }
+      .about__img-wrap { aspect-ratio: 16/7; }
+    }
+
+    /* ─── Services ─── */
+    .services { background: var(--white); }
+    .section-header { margin-bottom: 56px; }
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 18px;
+      padding: 36px 28px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--blue-mid), var(--blue-light));
+      transform: scaleX(0);
+      transition: var(--transition);
+      transform-origin: left;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--blue-pale); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      width: 64px; height: 64px;
+      background: var(--blue-pale);
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      transition: var(--transition);
+    }
+    .service-card:hover .service-icon { background: var(--blue-mid); }
+    .service-card h3 { font-size: 1.15rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 10px; }
+    .service-card p { font-size: .9rem; color: var(--gray-600); line-height: 1.7; margin-bottom: 20px; }
+    .service-card .link {
+      font-size: .88rem;
+      font-weight: 600;
+      color: var(--blue-mid);
+      display: flex; align-items: center; gap: 6px;
+      transition: var(--transition);
+    }
+    .service-card:hover .link { gap: 10px; }
+
+    /* ─── Blog Preview ─── */
+    .blog { background: var(--gray-100); }
+    .blog-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .blog-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .blog-card__img {
+      height: 180px;
+      background: linear-gradient(135deg, var(--blue-mid), var(--blue-dark));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem;
+    }
+    .blog-card__body { padding: 24px; }
+    .blog-card__category {
+      font-size: .75rem;
+      font-weight: 600;
+      color: var(--blue-mid);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 8px;
+    }
+    .blog-card__title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--blue-dark);
+      margin-bottom: 10px;
+      line-height: 1.45;
+    }
+    .blog-card__excerpt {
+      font-size: .85rem;
+      color: var(--gray-600);
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+    .blog-card__meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .8rem;
+      color: var(--gray-600);
+    }
+    .avatar-sm {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--blue-pale);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--blue-mid);
+    }
+
+    /* ─── Professionals ─── */
+    .professionals { background: var(--blue-dark); }
+    .professionals .heading-lg { color: white; }
+    .professionals .lead { color: rgba(255,255,255,.75); }
+    .pro-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .pro-card {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 16px;
+      padding: 28px;
+      transition: var(--transition);
+    }
+    .pro-card:hover { background: rgba(255,255,255,.14); transform: translateY(-4px); }
+    .pro-card .icon { font-size: 2rem; margin-bottom: 14px; }
+    .pro-card h4 { font-size: 1rem; font-weight: 700; color: white; margin-bottom: 8px; }
+    .pro-card p { font-size: .85rem; color: rgba(255,255,255,.7); line-height: 1.65; }
+    @media (max-width: 700px) { .pro-grid { grid-template-columns: 1fr; } }
+
+    /* ─── Contact ─── */
+    .contact { background: var(--white); }
+    .contact__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .contact-form {
+      background: var(--gray-100);
+      border-radius: 20px;
+      padding: 40px;
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--gray-800);
+      margin-bottom: 6px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 10px;
+      font-size: .9rem;
+      font-family: inherit;
+      color: var(--gray-800);
+      background: white;
+      transition: var(--transition);
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--blue-mid); box-shadow: 0 0 0 3px var(--blue-pale); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .contact-info h3 { margin-bottom: 24px; }
+    .contact-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 28px;
+    }
+    .contact-item .ci-icon {
+      width: 44px; height: 44px;
+      background: var(--blue-pale);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .contact-item .ci-label { font-size: .8rem; color: var(--gray-600); }
+    .contact-item .ci-value { font-weight: 600; color: var(--blue-dark); font-size: .95rem; }
+    .social-links { display: flex; gap: 12px; margin-top: 32px; }
+    .social-btn {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: var(--blue-pale);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+    .social-btn:hover { background: var(--blue-mid); transform: translateY(-3px); }
+    @media (max-width: 820px) {
+      .contact__inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    /* ─── Footer ─── */
+    footer {
+      background: var(--blue-dark);
+      color: rgba(255,255,255,.8);
+      padding: 64px 0 32px;
+    }
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer__brand .logo-text strong { color: white; }
+    .footer__brand .logo-text span { color: rgba(255,255,255,.5); }
+    .footer__brand p {
+      font-size: .88rem;
+      color: rgba(255,255,255,.6);
+      line-height: 1.7;
+      margin-top: 16px;
+      max-width: 280px;
+    }
+    .footer__col h5 {
+      font-size: .9rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 16px;
+      letter-spacing: .04em;
+    }
+    .footer__col ul li + li { margin-top: 10px; }
+    .footer__col ul li a {
+      font-size: .85rem;
+      color: rgba(255,255,255,.6);
+      transition: var(--transition);
+    }
+    .footer__col ul li a:hover { color: white; padding-left: 4px; }
+    .footer__bottom {
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer__bottom p { font-size: .82rem; color: rgba(255,255,255,.45); }
+    @media (max-width: 820px) {
+      .footer__grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+    @media (max-width: 500px) {
+      .footer__grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── WhatsApp FAB ─── */
+    .whatsapp-fab {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      width: 58px; height: 58px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,.5);
+      z-index: 888;
+      transition: var(--transition);
+      font-size: 1.7rem;
+    }
+    .whatsapp-fab:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,.65); }
+
+    /* ─── Scroll animations ─── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAVBAR ═══ -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <div class="navbar__inner">
+        <a href="#inicio" class="navbar__logo">
+          <div class="logo-icon">🧠</div>
+          <div class="logo-text">
+            <strong>Psicoeducandonos</strong>
+            <span>.org</span>
+          </div>
+        </a>
+        <ul class="navbar__nav" id="navMenu">
+          <li><a href="#inicio" class="active">Inicio</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#cursos">Cursos</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#profesionales">Profesionales</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+        <div class="navbar__cta">
+          <a href="https://moodle.psicoeducandonos.org/login/index.php" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:10px 20px;font-size:.85rem;">Campus Moodle</a>
+          <a href="#contacto" class="btn btn-primary" style="padding:10px 20px;font-size:.85rem;">Consultar ahora</a>
+        </div>
+        <button class="navbar__toggle" id="navToggle" aria-label="Menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="inicio">
+    <div class="container">
+      <div class="hero__inner">
+        <div class="hero__content fade-in">
+          <div class="hero__tag">✦ Salud Emocional Integral</div>
+          <h1 class="hero__title">
+            Transformando vidas a través de la <em>educación</em> emocional
+          </h1>
+          <p class="hero__desc">
+            Integramos fe, emociones, voluntad y pensamientos para acompañarte en un proceso
+            de crecimiento auténtico. Educación, terapia y recursos para una vida plena.
+          </p>
+          <div class="hero__actions">
+            <a href="#servicios" class="btn btn-primary">Descubrir servicios</a>
+            <a href="#contacto" class="btn btn-ghost">Contactar →</a>
+          </div>
+          <div class="hero__pillars">
+            <span class="pillar-chip">🙏 Fe</span>
+            <span class="pillar-chip">💙 Emociones</span>
+            <span class="pillar-chip">🧠 Pensamientos</span>
+            <span class="pillar-chip">🌱 Voluntad</span>
+          </div>
+        </div>
+        <div class="hero__visual">
+          <div class="hero__card-stack">
+            <div class="hero__card hero__card--main">
+              <div class="card-icon">💡</div>
+              <h3>Enfoque Integral</h3>
+              <p>Abordamos la salud mental desde una perspectiva que honra toda tu dimensión humana: mente, emoción, espíritu y voluntad.</p>
+              <div class="hero__pillars" style="margin-top:16px;">
+                <span class="pillar-chip">🙏 Fe</span>
+                <span class="pillar-chip">💙 Emoción</span>
+                <span class="pillar-chip">🧠 Mente</span>
+              </div>
+            </div>
+            <div class="hero__card hero__card--float">
+              <div class="mini-stat">+500</div>
+              <div class="mini-label">personas acompañadas</div>
+              <div style="margin-top:12px;font-size:1.4rem;">⭐⭐⭐⭐⭐</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ STATS BAR ═══ -->
+  <div class="stats-bar">
+    <div class="container">
+      <div class="stats-bar__inner">
+        <div class="stat-item fade-in">
+          <div class="number">500+</div>
+          <div class="label">Personas atendidas</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item fade-in">
+          <div class="number">20+</div>
+          <div class="label">Cursos disponibles</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item fade-in">
+          <div class="number">100%</div>
+          <div class="label">Enfoque integral</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item fade-in">
+          <div class="number">4</div>
+          <div class="label">Pilares de bienestar</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ NOSOTROS ═══ -->
+  <section class="about section" id="nosotros">
+    <div class="container">
+      <div class="about__inner">
+        <div class="fade-in">
+          <span class="tag">Quiénes somos</span>
+          <h2 class="heading-lg" style="margin-bottom:18px;">Una educación que sana desde adentro</h2>
+          <p style="color:var(--gray-600);line-height:1.75;margin-bottom:16px;">
+            En <strong>Psicoeducandonos.org</strong> creemos que la salud emocional auténtica surge cuando
+            atendemos al ser humano en su totalidad: sus pensamientos, sus emociones, su voluntad y su fe.
+          </p>
+          <p style="color:var(--gray-600);line-height:1.75;margin-bottom:32px;">
+            No separamos la espiritualidad de la salud mental. Al contrario: integramos ambas dimensiones
+            para ofrecer recursos educativos, acompañamiento terapéutico y formación profesional que
+            transformen vidas de manera profunda y duradera.
+          </p>
+          <a href="#contacto" class="btn btn-primary">Conocer más →</a>
+          <div class="about__pillars">
+            <div class="pillar-card">
+              <div class="icon">🙏</div>
+              <h4>Fe</h4>
+              <p>Integramos la dimensión espiritual como fundamento del bienestar integral.</p>
+            </div>
+            <div class="pillar-card">
+              <div class="icon">💙</div>
+              <h4>Emociones</h4>
+              <p>Aprendemos a reconocer, gestionar y sanar el mundo emocional.</p>
+            </div>
+            <div class="pillar-card">
+              <div class="icon">🧠</div>
+              <h4>Pensamientos</h4>
+              <p>Renovamos patrones mentales que limitan el crecimiento personal.</p>
+            </div>
+            <div class="pillar-card">
+              <div class="icon">🌱</div>
+              <h4>Voluntad</h4>
+              <p>Fortalecemos la capacidad de decisión y acción consciente.</p>
+            </div>
+          </div>
+        </div>
+        <div class="about__img-wrap fade-in">
+          <div class="about__img-placeholder">
+            <div class="big-icon">🌿</div>
+            <p>Creciendo juntos hacia el bienestar integral</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SERVICIOS ═══ -->
+  <section class="services section" id="servicios">
+    <div class="container">
+      <div class="section-header text-center fade-in">
+        <span class="tag">Lo que ofrecemos</span>
+        <h2 class="heading-lg" style="margin-bottom:16px;">Nuestros servicios</h2>
+        <p class="lead" style="margin:0 auto;">Recursos y acompañamiento diseñados para cada etapa de tu camino hacia el bienestar emocional.</p>
+      </div>
+      <div class="grid-4">
+        <div class="service-card fade-in">
+          <div class="service-icon">📚</div>
+          <h3>Cursos en línea</h3>
+          <p>Formación práctica y profunda en salud emocional, inteligencia espiritual, crianza consciente y más. A tu ritmo, desde cualquier lugar.</p>
+          <a href="#cursos" class="link">Ver cursos <span>→</span></a>
+        </div>
+        <div class="service-card fade-in">
+          <div class="service-icon">💬</div>
+          <h3>Consultas individuales</h3>
+          <p>Acompañamiento terapéutico personalizado con profesionales especializados en salud emocional integral. Presencial y en línea.</p>
+          <a href="#contacto" class="link">Agendar sesión <span>→</span></a>
+        </div>
+        <div class="service-card fade-in">
+          <div class="service-icon">✍️</div>
+          <h3>Blog y recursos</h3>
+          <p>Artículos, reflexiones y materiales educativos actualizados semanalmente sobre bienestar emocional, fe y salud mental.</p>
+          <a href="#blog" class="link">Leer artículos <span>→</span></a>
+        </div>
+        <div class="service-card fade-in">
+          <div class="service-icon">🎓</div>
+          <h3>Para profesionales</h3>
+          <p>Recursos, formación continua y comunidad para psicólogos, consejeros y líderes que integran fe y psicología en su práctica.</p>
+          <a href="#profesionales" class="link">Acceder <span>→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CURSOS ═══ -->
+  <section class="section" id="cursos" style="background:var(--blue-pale);">
+    <div class="container">
+      <div class="section-header text-center fade-in">
+        <span class="tag">Formación</span>
+        <h2 class="heading-lg" style="margin-bottom:16px;">Cursos destacados</h2>
+        <p class="lead" style="margin:0 auto;">Aprende a tu ritmo con contenido diseñado para transformar tu vida desde adentro.</p>
+      </div>
+      <div class="grid-3">
+        <div class="blog-card fade-in">
+          <div class="blog-card__img" style="background:linear-gradient(135deg,#1B5FA8,#0F3460);">📖</div>
+          <div class="blog-card__body">
+            <div class="blog-card__category">Emociones</div>
+            <div class="blog-card__title">Inteligencia Emocional desde la Fe</div>
+            <div class="blog-card__excerpt">Aprende a identificar, comprender y gestionar tus emociones integrando los principios espirituales de tu fe.</div>
+            <a href="#contacto" class="btn btn-outline" style="width:100%;justify-content:center;padding:10px;">Más info</a>
+          </div>
+        </div>
+        <div class="blog-card fade-in">
+          <div class="blog-card__img" style="background:linear-gradient(135deg,#2E86C1,#1B5FA8);">👨‍👩‍👧</div>
+          <div class="blog-card__body">
+            <div class="blog-card__category">Familia</div>
+            <div class="blog-card__title">Crianza Consciente e Integral</div>
+            <div class="blog-card__excerpt">Herramientas para acompañar el desarrollo emocional y espiritual de tus hijos con amor y sabiduría.</div>
+            <a href="#contacto" class="btn btn-outline" style="width:100%;justify-content:center;padding:10px;">Más info</a>
+          </div>
+        </div>
+        <div class="blog-card fade-in">
+          <div class="blog-card__img" style="background:linear-gradient(135deg,#3A8DDE,#2E86C1);">🧘</div>
+          <div class="blog-card__body">
+            <div class="blog-card__category">Bienestar</div>
+            <div class="blog-card__title">Renovación de la Mente</div>
+            <div class="blog-card__excerpt">Un camino práctico para transformar patrones de pensamiento negativos y construir una mente saludable.</div>
+            <a href="#contacto" class="btn btn-outline" style="width:100%;justify-content:center;padding:10px;">Más info</a>
+          </div>
+        </div>
+      </div>
+      <div class="text-center" style="margin-top:40px;">
+        <a href="#contacto" class="btn btn-primary">Ver todos los cursos →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ BLOG ═══ -->
+  <section class="blog section" id="blog">
+    <div class="container">
+      <div class="section-header text-center fade-in">
+        <span class="tag">Contenido</span>
+        <h2 class="heading-lg" style="margin-bottom:16px;">Artículos recientes</h2>
+        <p class="lead" style="margin:0 auto;">Artículos migrados desde tu exportación WordPress, listos para leer en tu nuevo sitio.</p>
+      </div>
+      <div class="grid-3">
+        <div class="blog-card fade-in">
+          <div class="blog-card__img">🧩</div>
+          <div class="blog-card__body">
+            <div class="blog-card__category">Blog</div>
+            <div class="blog-card__title"><a href="articulos/lo-que-mas-duele-se-queda-mas-tiempo.html">LO QUE MAS DUELE SE QUEDA MAS TIEMPO</a></div>
+            <div class="blog-card__excerpt">En el amor, como en la memoria, lo que mas duele se queda mas tiempo. Una reflexion sobre sesgos cognitivos en pareja.</div>
+            <div class="blog-card__meta">
+              <div class="avatar-sm">CF</div>
+              <span>Psicologo Carlos Fuenmayor</span>
+              <span>·</span>
+              <span>25/04/2025</span>
+            </div>
+          </div>
+        </div>
+        <div class="blog-card fade-in">
+          <div class="blog-card__img" style="background:linear-gradient(135deg,#1B5FA8,#0F3460);">🌫️</div>
+          <div class="blog-card__body">
+            <div class="blog-card__category">Blog</div>
+            <div class="blog-card__title"><a href="articulos/la-soledad-compartida.html">La Soledad Compartida</a></div>
+            <div class="blog-card__excerpt">Una mirada psicologica sobre la desconexion emocional en relaciones donde la presencia fisica no alcanza.</div>
+            <div class="blog-card__meta">
+              <div class="avatar-sm">CF</div>
+              <span>Psicologo Carlos Fuenmayor</span>
+              <span>·</span>
+              <span>12/05/2025</span>
+            </div>
+          </div>
+        </div>
+        <div class="blog-card fade-in">
+          <div class="blog-card__img" style="background:linear-gradient(135deg,#3A8DDE,#1B5FA8);">🧘</div>
+          <div class="blog-card__body">
+            <div class="blog-card__category">Blog</div>
+            <div class="blog-card__title"><a href="articulos/quien-soy-si-no-hago-nada.html">¿Quien Soy Si No Hago Nada?</a></div>
+            <div class="blog-card__excerpt">Reflexion sobre hiperactividad, vacio existencial y el valor terapeutico de la pausa consciente.</div>
+            <div class="blog-card__meta">
+              <div class="avatar-sm">CF</div>
+              <span>Psicologo Carlos Fuenmayor</span>
+              <span>·</span>
+              <span>13/05/2025</span>
+            </div>
+          </div>
+        </div>
+        <div class="blog-card fade-in">
+          <div class="blog-card__img" style="background:linear-gradient(135deg,#2E86C1,#1B5FA8);">🚦</div>
+          <div class="blog-card__body">
+            <div class="blog-card__category">Blog</div>
+            <div class="blog-card__title"><a href="articulos/quien-nunca-dice-no.html">¿Quien nunca dice no?</a></div>
+            <div class="blog-card__excerpt">Cuando decir siempre "si" deja de ser amor y se vuelve perdida de autenticidad en el vinculo.</div>
+            <div class="blog-card__meta">
+              <div class="avatar-sm">CF</div>
+              <span>Psicologo Carlos Fuenmayor</span>
+              <span>·</span>
+              <span>21/05/2025</span>
+            </div>
+          </div>
+        </div>
+        <div class="blog-card fade-in">
+          <div class="blog-card__img" style="background:linear-gradient(135deg,#1B5FA8,#0F3460);">🧬</div>
+          <div class="blog-card__body">
+            <div class="blog-card__category">Blog</div>
+            <div class="blog-card__title"><a href="articulos/cuando-la-historia-familiar-se-repite.html">CUANDO LA HISTORIA FAMILIAR SE REPITE</a></div>
+            <div class="blog-card__excerpt">Repeticiones transgeneracionales, sistemas familiares y el punto de quiebre que abre posibilidad de cambio.</div>
+            <div class="blog-card__meta">
+              <div class="avatar-sm">CF</div>
+              <span>Psicologo Carlos Fuenmayor</span>
+              <span>·</span>
+              <span>23/05/2025</span>
+            </div>
+          </div>
+        </div>
+        <div class="blog-card fade-in">
+          <div class="blog-card__img" style="background:linear-gradient(135deg,#3A8DDE,#2E86C1);">🕰️</div>
+          <div class="blog-card__body">
+            <div class="blog-card__category">Blog</div>
+            <div class="blog-card__title"><a href="articulos/volver-al-pasado-es-siempre-evasion.html">¿Volver al pasado es siempre evasion?</a></div>
+            <div class="blog-card__excerpt">Una guia para diferenciar entre recordar para sanar y quedarse anclado en la nostalgia.</div>
+            <div class="blog-card__meta">
+              <div class="avatar-sm">CF</div>
+              <span>Psicologo Carlos Fuenmayor</span>
+              <span>·</span>
+              <span>29/05/2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center" style="margin-top:40px;">
+        <a href="articulos/volver-al-pasado-es-siempre-evasion.html" class="btn btn-outline">Ir al blog migrado →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROFESIONALES ═══ -->
+  <section class="professionals section" id="profesionales">
+    <div class="container">
+      <div class="section-header text-center fade-in">
+        <span class="tag" style="background:rgba(255,255,255,.15);color:rgba(255,255,255,.9);">Para profesionales</span>
+        <h2 class="heading-lg" style="margin-bottom:16px;color:white;">¿Eres psicólogo, consejero o líder?</h2>
+        <p class="lead" style="color:rgba(255,255,255,.75);margin:0 auto;">Únete a nuestra comunidad de profesionales comprometidos con una psicología que integra fe y ciencia.</p>
+      </div>
+      <div class="pro-grid">
+        <div class="pro-card fade-in">
+          <div class="icon">🎓</div>
+          <h4>Formación continua</h4>
+          <p>Cursos especializados en psicología integral, consejería pastoral y abordajes que integran la dimensión espiritual.</p>
+        </div>
+        <div class="pro-card fade-in">
+          <div class="icon">🤝</div>
+          <h4>Red de colaboración</h4>
+          <p>Conecta con otros profesionales de la salud mental que comparten un enfoque integral y basado en valores.</p>
+        </div>
+        <div class="pro-card fade-in">
+          <div class="icon">📋</div>
+          <h4>Recursos clínicos</h4>
+          <p>Accede a materiales, guías y herramientas desarrolladas específicamente para la práctica clínica integral.</p>
+        </div>
+      </div>
+      <div class="text-center" style="margin-top:48px;">
+        <a href="#contacto" class="btn btn-ghost">Quiero unirme →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTACTO ═══ -->
+  <section class="contact section" id="contacto">
+    <div class="container">
+      <div class="section-header text-center fade-in">
+        <span class="tag">Contacto</span>
+        <h2 class="heading-lg" style="margin-bottom:16px;">¿Hablamos?</h2>
+        <p class="lead" style="margin:0 auto;">Estamos aquí para acompañarte. Escríbenos y te responderemos a la brevedad.</p>
+      </div>
+      <div class="contact__inner">
+        <div class="contact-form fade-in">
+          <h3 class="heading-md" style="margin-bottom:24px;">Envíanos un mensaje</h3>
+          <form onsubmit="handleForm(event)">
+            <div class="grid-2" style="gap:16px;">
+              <div class="form-group">
+                <label for="nombre">Nombre *</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+              </div>
+              <div class="form-group">
+                <label for="apellido">Apellido</label>
+                <input type="text" id="apellido" name="apellido" placeholder="Tu apellido" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Correo electrónico *</label>
+              <input type="email" id="email" name="email" placeholder="tu@correo.com" required />
+            </div>
+            <div class="form-group">
+              <label for="interes">¿En qué estás interesado/a?</label>
+              <select id="interes" name="interes">
+                <option value="">Seleccionar...</option>
+                <option>Consulta individual</option>
+                <option>Cursos en línea</option>
+                <option>Sección para profesionales</option>
+                <option>Información general</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="mensaje">Mensaje *</label>
+              <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos cómo podemos ayudarte..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+              Enviar mensaje →
+            </button>
+          </form>
+        </div>
+        <div class="contact-info fade-in">
+          <h3 class="heading-md">Información de contacto</h3>
+          <div class="contact-item">
+            <div class="ci-icon">📱</div>
+            <div>
+              <div class="ci-label">WhatsApp / Teléfono</div>
+              <div class="ci-value">+54 9 11 5334-2924</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">📧</div>
+            <div>
+              <div class="ci-label">Correo electrónico</div>
+              <div class="ci-value">info@psicoeducandonos.org</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">🌐</div>
+            <div>
+              <div class="ci-label">Sitio web</div>
+              <div class="ci-value">psicoeducandonos.org</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">🕐</div>
+            <div>
+              <div class="ci-label">Horario de atención</div>
+              <div class="ci-value">Lunes a Viernes · 9:00 – 18:00 hs</div>
+            </div>
+          </div>
+          <div>
+            <p style="font-size:.85rem;color:var(--gray-600);margin-bottom:12px;font-weight:600;">Síguenos en redes sociales</p>
+            <div class="social-links">
+              <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+              <a href="#" class="social-btn" aria-label="Facebook">📘</a>
+              <a href="#" class="social-btn" aria-label="YouTube">▶️</a>
+              <a href="#" class="social-btn" aria-label="LinkedIn">💼</a>
+            </div>
+          </div>
+          <div style="margin-top:36px;background:var(--blue-pale);border-radius:16px;padding:24px;">
+            <div style="font-size:1.5rem;margin-bottom:8px;">💬</div>
+            <p style="font-weight:700;color:var(--blue-dark);margin-bottom:6px;">Atención rápida por WhatsApp</p>
+            <p style="font-size:.85rem;color:var(--gray-600);margin-bottom:16px;">Respuesta en menos de 24 horas hábiles.</p>
+            <a href="https://wa.me/5491153342924" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="background:#25D366;width:100%;justify-content:center;">
+              Escribir por WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <div class="navbar__logo" style="margin-bottom:12px;">
+            <div class="logo-icon">🧠</div>
+            <div class="logo-text">
+              <strong>Psicoeducandonos</strong>
+              <span>.org</span>
+            </div>
+          </div>
+          <p>Educación en salud emocional integral. Integrando fe, emociones, voluntad y pensamientos para una vida plena.</p>
+          <div class="social-links" style="margin-top:20px;">
+            <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+            <a href="#" class="social-btn" aria-label="Facebook">📘</a>
+            <a href="#" class="social-btn" aria-label="YouTube">▶️</a>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h5>Servicios</h5>
+          <ul>
+            <li><a href="#cursos">Cursos en línea</a></li>
+            <li><a href="#contacto">Consultas individuales</a></li>
+            <li><a href="#blog">Blog y recursos</a></li>
+            <li><a href="#profesionales">Para profesionales</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h5>Recursos</h5>
+          <ul>
+            <li><a href="#blog">Artículos</a></li>
+            <li><a href="#cursos">Cursos</a></li>
+            <li><a href="#nosotros">Nuestra misión</a></li>
+            <li><a href="#contacto">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h5>Contacto</h5>
+          <ul>
+            <li><a href="mailto:info@psicoeducandonos.org">info@psicoeducandonos.org</a></li>
+            <li><a href="https://wa.me/5491153342924">+54 9 11 5334-2924</a></li>
+            <li><a href="#contacto">Agendar consulta</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© 2026 Psicoeducandonos.org · Todos los derechos reservados.</p>
+        <p>
+          <a href="#" style="color:rgba(255,255,255,.5);transition:color .2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.5)'">Política de Privacidad</a>
+          &nbsp;·&nbsp;
+          <a href="#" style="color:rgba(255,255,255,.5);transition:color .2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.5)'">Términos y Condiciones</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══ WhatsApp FAB ═══ -->
+  <a class="whatsapp-fab" href="https://wa.me/5491153342924" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+    💬
+  </a>
+
+  <!-- ═══ JavaScript ═══ -->
+  <script>
+    // Navbar scroll effect + toggle
+    const navbar = document.getElementById('navbar');
+    const navToggle = document.getElementById('navToggle');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+    });
+    navToggle.addEventListener('click', () => {
+      navbar.classList.toggle('open');
+    });
+    // Close menu on link click
+    document.querySelectorAll('.navbar__nav a').forEach(link => {
+      link.addEventListener('click', () => navbar.classList.remove('open'));
+    });
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id], div[id]');
+    const navLinks = document.querySelectorAll('.navbar__nav a');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+    sections.forEach(s => observer.observe(s));
+
+    // Fade-in on scroll
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    fadeEls.forEach(el => fadeObserver.observe(el));
+
+    // Form handler (placeholder – connect to backend/email service)
+    function handleForm(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      btn.textContent = '✓ Mensaje enviado';
+      btn.style.background = '#27AE60';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Enviar mensaje →';
+        btn.style.background = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
