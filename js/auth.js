@@ -27,6 +27,7 @@ export const authConfig = {
   idleTimeoutMinutes: Number(CONFIG.idleTimeoutMinutes || 20),
   loginPath: getBasePath(CONFIG.loginPath || "/login.html"),
   mfaPath: getBasePath(CONFIG.mfaPath || "/mfa.html"),
+  resetPasswordPath: getBasePath(CONFIG.resetPasswordPath || "/reset-password.html"),
   adminPath: getBasePath(CONFIG.adminPath || "/admin/"),
   allowedRoles: CONFIG.allowedRoles || ["admin", "editor"],
   isConfigured

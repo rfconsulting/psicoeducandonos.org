@@ -7,9 +7,17 @@ const verifyPanel = document.querySelector("[data-mfa-panel]");
 const statusEl = document.querySelector("[data-auth-status]");
 const qrTarget = document.querySelector("[data-mfa-qr]");
 const factorSelect = document.querySelector("[data-factor-id]");
+const enrollButton = document.querySelector("[data-start-enroll]");
 
 let enrollment = null;
 let supabase = null;
+let factors = { totp: [] };
+
+function formatSupabaseError(error, fallback) {
+  const detail = error?.message || error?.error_description || error?.name || "";
+  const status = error?.status ? ` (${error.status})` : "";
+  return detail ? `${fallback} Detalle: ${detail}${status}` : fallback;
+}
 
 async function ensureSession() {
   if (!authConfig.isConfigured()) {
@@ -29,6 +37,7 @@ async function ensureSession() {
 async function loadFactors() {
   const { data, error } = await supabase.auth.mfa.listFactors();
   if (error) throw error;
+  factors = data;
 
   const verifiedTotp = data.totp.filter((factor) => factor.status === "verified");
   factorSelect.innerHTML = "";
@@ -46,6 +55,12 @@ async function loadFactors() {
 
 async function enrollTotp() {
   clearStatus(statusEl);
+
+  const unverifiedTotp = factors.totp.filter((factor) => factor.status !== "verified");
+  for (const factor of unverifiedTotp) {
+    await supabase.auth.mfa.unenroll({ factorId: factor.id });
+  }
+
   const { data, error } = await supabase.auth.mfa.enroll({
     factorType: "totp",
     friendlyName: "Psicoeducandonos Admin"
@@ -53,7 +68,14 @@ async function enrollTotp() {
   if (error) throw error;
 
   enrollment = data;
-  qrTarget.innerHTML = data.totp.qr_code;
+  qrTarget.innerHTML = "";
+
+  const qrImage = document.createElement("img");
+  qrImage.src = data.totp.qr_code;
+  qrImage.alt = "Codigo QR para activar 2FA";
+  qrImage.loading = "eager";
+  qrTarget.append(qrImage);
+
   setupPanel.hidden = false;
   setStatus(statusEl, "Escanea el QR y confirma el codigo de 6 digitos.", "info");
 }
@@ -76,9 +98,13 @@ async function verifyFactor(factorId, code, challengeId) {
 
 document.querySelector("[data-start-enroll]")?.addEventListener("click", async () => {
   try {
+    enrollButton.disabled = true;
+    enrollButton.textContent = "Creando QR...";
     await enrollTotp();
   } catch (error) {
-    setStatus(statusEl, "No se pudo iniciar la activacion MFA.", "error");
+    setStatus(statusEl, formatSupabaseError(error, "No se pudo iniciar la activacion MFA."), "error");
+    enrollButton.disabled = false;
+    enrollButton.textContent = "Activar autenticador";
   }
 });
 
@@ -88,7 +114,7 @@ enrollForm?.addEventListener("submit", async (event) => {
   try {
     await verifyFactor(enrollment.id, code);
   } catch (error) {
-    setStatus(statusEl, "Codigo MFA invalido o expirado.", "error");
+    setStatus(statusEl, formatSupabaseError(error, "Codigo MFA invalido o expirado."), "error");
   }
 });
 
@@ -100,7 +126,7 @@ verifyForm?.addEventListener("submit", async (event) => {
   try {
     await verifyFactor(factorId, code);
   } catch (error) {
-    setStatus(statusEl, "Codigo MFA invalido o expirado.", "error");
+    setStatus(statusEl, formatSupabaseError(error, "Codigo MFA invalido o expirado."), "error");
   }
 });
 
@@ -111,5 +137,5 @@ try {
     await loadFactors();
   }
 } catch (error) {
-  setStatus(statusEl, "No se pudo cargar la verificacion MFA.", "error");
+  setStatus(statusEl, formatSupabaseError(error, "No se pudo cargar la verificacion MFA."), "error");
 }

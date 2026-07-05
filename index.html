@@ -1187,6 +1187,10 @@
 
   <!-- ═══ JavaScript ═══ -->
   <script>
+    if (location.hash.includes('type=recovery') || location.hash.includes('access_token=')) {
+      location.replace('reset-password.html' + location.hash);
+    }
+
     // Navbar scroll effect + toggle
     const navbar = document.getElementById('navbar');
     const navToggle = document.getElementById('navToggle');

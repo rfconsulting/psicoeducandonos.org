@@ -1,8 +1,10 @@
 import { authConfig, clearStatus, getSupabaseClient, setStatus, touchActivity } from "./auth.js";
 
 const form = document.querySelector("[data-login-form]");
+const resetForm = document.querySelector("[data-reset-request-form]");
 const statusEl = document.querySelector("[data-auth-status]");
 const submit = form?.querySelector("button[type='submit']");
+const resetSubmit = resetForm?.querySelector("button[type='submit']");
 
 const reasonMessages = {
   idle: "La sesion expiro por inactividad. Inicia sesion nuevamente.",
@@ -49,5 +51,32 @@ form?.addEventListener("submit", async (event) => {
     setStatus(statusEl, "No pudimos validar tus credenciales. Revisa los datos e intenta otra vez.", "error");
     submit.disabled = false;
     submit.textContent = "Entrar";
+  }
+});
+
+resetForm?.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  clearStatus(statusEl);
+
+  const email = String(new FormData(form).get("email") || "").trim();
+  if (!email) {
+    setStatus(statusEl, "Escribe tu email primero para enviar el enlace de recuperacion.", "error");
+    return;
+  }
+
+  resetSubmit.disabled = true;
+  resetSubmit.textContent = "Enviando...";
+
+  try {
+    const supabase = await getSupabaseClient();
+    const redirectTo = new URL(authConfig.resetPasswordPath, location.href).toString();
+    const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo });
+    if (error) throw error;
+    setStatus(statusEl, "Si el email existe, recibira un enlace para cambiar la contrasena.", "success");
+  } catch (error) {
+    setStatus(statusEl, "No se pudo enviar el enlace de recuperacion. Revisa la configuracion de Supabase.", "error");
+  } finally {
+    resetSubmit.disabled = false;
+    resetSubmit.textContent = "Enviar enlace de recuperacion";
   }
 });

@@ -6,6 +6,7 @@ window.PSICO_AUTH_CONFIG = {
   idleTimeoutMinutes: 20,
   loginPath: "/login.html",
   mfaPath: "/mfa.html",
+  resetPasswordPath: "/reset-password.html",
   adminPath: "/admin/",
   allowedRoles: ["admin", "editor"]
 };

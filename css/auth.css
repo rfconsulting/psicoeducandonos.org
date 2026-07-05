@@ -226,6 +226,17 @@ a {
   text-decoration: none;
 }
 
+.auth-inline-form {
+  margin-top: 16px;
+}
+
+.auth-help {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: .9rem;
+  line-height: 1.5;
+}
+
 .mfa-qr {
   display: grid;
   place-items: center;
@@ -237,7 +248,8 @@ a {
   background: #fbfdff;
 }
 
-.mfa-qr svg {
+.mfa-qr svg,
+.mfa-qr img {
   max-width: 190px;
   height: auto;
 }
